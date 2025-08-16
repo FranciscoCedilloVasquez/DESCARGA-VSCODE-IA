@@ -499,4 +499,8 @@ footer p {
         font-weight: bold;
         text-align: left;
     }
+
+    .license-table .check-mark {
+        font-size: 1.2rem; /* Adjust as needed for mobile */
+    }
 }

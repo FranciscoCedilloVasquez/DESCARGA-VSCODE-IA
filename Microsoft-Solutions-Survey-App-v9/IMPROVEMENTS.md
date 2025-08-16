@@ -82,3 +82,27 @@ Esto mejora la experiencia del usuario al proporcionar retroalimentación explí
 ## Conclusión
 
 Estas actualizaciones han mejorado significativamente la calidad del código de la aplicación, corrigiendo errores funcionales y haciendo que el código sea más fácil de entender y mantener en el futuro. La aplicación ahora debería funcionar de manera más fiable y predecible.
+
+### 8. Ajuste de Tamaño de Fuente en Cuadro de Resumen de Licenciamiento para Móviles
+
+**Problema:** Las fuentes del "plan recomendado en color verde" dentro del cuadro de resumen de licenciamiento se salían de su espacio asignado al visualizarse en dispositivos móviles en posición vertical. Esto se debía a que la clase `.check-mark`, utilizada para mostrar el ícono de verificación verde, tenía un `font-size` de `1.5rem`, lo cual era demasiado grande para pantallas pequeñas.
+
+**Análisis:**
+- Se identificó que el "cuadro de resumen de licenciamiento" es generado dinámicamente por la función `generateLicenseTable` en `js/report.js` y se inserta en el contenedor `<div id="license-comparison-container"></div>` en `report.html`.
+- Las celdas de la tabla que muestran el "plan recomendado" utilizan la clase `.check-mark` cuando la funcionalidad está incluida en el plan recomendado (Microsoft 365 E5).
+- En `css/style.css`, la clase `.check-mark` tenía definido un `font-size: 1.5rem;`, lo que causaba el desbordamiento en dispositivos móviles.
+
+**Solución:**
+- Se añadió una regla CSS específica dentro de la media query `@media (max-width: 768px)` en `css/style.css`.
+- Esta regla reduce el `font-size` de la clase `.check-mark` a `1.2rem` para asegurar que el texto y el ícono se ajusten correctamente dentro de las celdas de la tabla en pantallas más pequeñas.
+
+**Código Modificado (css/style.css):**
+```css
+@media (max-width: 768px) {
+    /* ... otras reglas existentes ... */
+
+    .license-table .check-mark {
+        font-size: 1.2rem; /* Ajustado para dispositivos móviles */
+    }
+}
+```
