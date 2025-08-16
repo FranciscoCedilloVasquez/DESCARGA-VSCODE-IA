@@ -355,6 +355,38 @@ button.hidden { display: none; }
     margin: 0 auto;
 }
 
+.radar-chart {
+    /* Add any specific styling for the chart itself if needed */
+}
+
+.radar-grid {
+    fill: none;
+    stroke: var(--border-color);
+    stroke-width: 1;
+}
+
+.radar-labels text {
+    font-size: 12px;
+    fill: var(--text-color);
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+.radar-shape {
+    fill-opacity: 0.35;
+    stroke-width: 2;
+}
+
+.current-shape {
+    fill: var(--warning-color);
+    stroke: var(--warning-color);
+}
+
+.desired-shape {
+    fill: var(--success-color);
+    stroke: var(--success-color);
+}
+
 /* 9. Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
@@ -416,4 +448,18 @@ button.hidden { display: none; }
         width: 100%;
         margin: 0.5rem 0;
     }
+}
+
+/* 11. Footer */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+footer p {
+    margin: 0.25rem 0;
 }
