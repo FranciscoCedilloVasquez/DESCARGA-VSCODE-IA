@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');
+
+:root {
+    --primary-color: #0078D4;
+    --secondary-color: #F3F2F1;
+    --text-color: #333;
+    --border-color: #D1D1D1;
+    --background-color: #FFFFFF;
+    --success-color: #107C10;
+    --error-color: #D83B01;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: var(--background-color);
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+fieldset {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--primary-color);
+    padding: 0 10px;
+}
+
+label {
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+input[type="radio"] + label {
+    display: inline-block;
+    font-weight: 400;
+    margin-right: 15px;
+}
+
+button[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #005A9E;
+}
+
+.hidden {
+    display: none;
+}
+
+#reportContainer {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #F9F9F9;
+}
+
+#reportContainer h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+.report-section {
+    margin-bottom: 25px;
+}
+
+.report-section h3 {
+    color: #333;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.recommendation-list, .diagnosis-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.diagnosis-table th, .diagnosis-table td {
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    text-align: left;
+}
+
+.diagnosis-table th {
+    background-color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.recommendation-list li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.recommendation-list li::before {
+    content: '💡';
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.savings-summary {
+    background-color: #EBF5FB;
+    padding: 15px;
+    border-left: 5px solid var(--primary-color);
+    margin-top: 15px;
+}
+
+.savings-summary p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+.savings-summary strong {
+    color: var(--success-color);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+}

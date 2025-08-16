@@ -1,0 +1,219 @@
+:root {
+    --primary-color: #0078D4;
+    --secondary-color: #F3F2F1;
+    --text-color: #333;
+    --background-color: #FFFFFF;
+    --progress-bar-bg: #e0e0e0;
+    --success-color: #4CAF50;
+    --warning-color: #FFC107;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px 40px;
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+header h1 {
+    font-size: 1.8em;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: var(--progress-bar-bg);
+    border-radius: 5px;
+    height: 10px;
+    margin-bottom: 30px;
+}
+
+.progress {
+    width: 0;
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+}
+
+.survey-section {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.survey-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.question {
+    margin-bottom: 25px;
+}
+
+.question label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.question input[type="text"],
+.question select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.radio-group label {
+    display: block;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.radio-group label:hover {
+    background-color: #f0f0f0;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 10px;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #005a9e;
+}
+
+button.hidden {
+    display: none;
+}
+
+#prev-btn {
+    background-color: #6c757d;
+}
+
+#prev-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Report Styles */
+.report-header {
+    text-align: center;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.report-section {
+    margin-bottom: 30px;
+}
+
+.report-section h2 {
+    color: var(--primary-color);
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+.report-table th, .report-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.report-table th {
+    background-color: var(--secondary-color);
+}
+
+.report-table .status-ok { color: var(--success-color); font-weight: bold; }
+.report-table .status-warning { color: var(--warning-color); font-weight: bold; }
+
+.recommendations ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recommendations li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-left: 4px solid var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.recommendations li p {
+    margin: 5px 0 0 0;
+}
+
+.final-cta ul {
+    list-style-position: inside;
+}
+
+.final-cta button {
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.required {
+    color: red;
+    margin-left: 4px;
+}
+
+/* Style for the new answers summary table */
+.answers-summary-table td:first-child {
+    font-weight: 600;
+    width: 60%;
+}

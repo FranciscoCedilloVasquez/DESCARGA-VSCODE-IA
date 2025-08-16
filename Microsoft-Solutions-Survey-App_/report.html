@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Evaluación de Soluciones Microsoft</title>
+    <link rel="stylesheet" href="style.css"> <!-- Reutilizamos estilos y añadimos específicos -->
+</head>
+<body>
+    <div class="container report-page">
+        <header class="report-header">
+            <h1>Informe de Evaluación de Soluciones Microsoft</h1>
+            <p><strong>Cliente:</strong> <span id="report-cliente"></span></p>
+            <p><strong>Fecha:</strong> <span id="report-fecha"></span></p>
+            <p><strong>Responsable de análisis:</strong> Gemini Solutions</p>
+        </header>
+
+        <main>
+            <div class="report-section">
+                <h2>🧠 Resumen Ejecutivo</h2>
+                <p>Tras analizar sus respuestas, hemos identificado oportunidades clave para optimizar su inversión en soluciones Microsoft, mejorar la productividad y fortalecer la seguridad. A continuación, se detallan los hallazgos y recomendaciones estratégicas.</p>
+            </div>
+
+            <div class="report-section">
+                <h2>🔍 Diagnóstico Actual</h2>
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>Área Evaluada</th>
+                            <th>Estado Actual</th>
+                            <th>Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="diagnostico-body"></tbody>
+                </table>
+            </div>
+
+            <div class="report-section recommendations">
+                <h2>💡 Recomendaciones</h2>
+                <ul id="recomendaciones-list"></ul>
+            </div>
+
+            <div class="report-section">
+                <h2>📊 Estimación de Ahorro y Valor</h2>
+                 <p>La siguiente tabla no solo refleja un posible ahorro en costos directos (como licencias duplicadas), sino también el valor obtenido al activar herramientas incluidas que mejoran la productividad y seguridad, evitando la compra de soluciones de terceros.</p>
+                <table class="report-table">
+                     <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Gasto Actual / Situación</th>
+                            <th>Gasto Optimizado / Situación</th>
+                            <th>Ahorro o Valor Generado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ahorro-body"></tbody>
+                </table>
+            </div>
+
+            <div class="report-section final-cta">
+                <h2>📎 Próximos Pasos</h2>
+                <ul>
+                    <li>Agendar una sesión de asesoría personalizada para profundizar en los hallazgos.</li>
+                    <li>Recibir una propuesta técnica y comercial ajustada a sus necesidades.</li>
+                    <li>Definir un plan de trabajo para activar las herramientas recomendadas y capacitar a los equipos.</li>
+                </ul>
+                <button onclick="window.print()">Imprimir o Guardar como PDF</button>
+                <button onclick="window.location.href='index.html'">Volver a la Encuesta</button>
+            </div>
+        </main>
+    </div>
+    <script src="report.js"></script>
+</body>
+</html>
