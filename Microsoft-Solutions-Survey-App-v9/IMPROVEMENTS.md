@@ -37,6 +37,48 @@ Se han realizado varias mejoras en el código de la aplicación de encuestas par
 
 La función `generateMasterReport` ahora orquesta las llamadas a estas nuevas funciones, resultando en un código más limpio y organizado.
 
+### 4. Responsividad de la Tabla de Licenciamiento
+
+**Problema:** La tabla de resumen de licenciamiento no era responsiva en dispositivos móviles, lo que dificultaba su visualización en pantallas pequeñas.
+
+**Solución:** Se han implementado los siguientes cambios para asegurar que la tabla de licenciamiento sea completamente responsiva:
+- **Atributos `data-label` en HTML:** Se modificó la función `generateLicenseTable` en `js/report.js` para añadir dinámicamente atributos `data-label` a cada celda (`<td>`) de la tabla. Estos atributos contienen el encabezado de la columna correspondiente.
+- **Estilos CSS para Móviles:** Se añadieron nuevas reglas de CSS en `css/style.css` dentro de una media query (`@media (max-width: 768px)`). Estos estilos se aplican específicamente a la `.license-table` y hacen lo siguiente:
+    - Ocultan el encabezado (`<thead>`) de la tabla en pantallas pequeñas.
+    - Transforman cada fila (`<tr>`) en un bloque independiente, similar a una tarjeta.
+    - Muestran cada celda (`<td>`) como un bloque, una debajo de la otra.
+    - Utilizan el pseudo-elemento `::before` y el contenido del atributo `data-label` para mostrar el encabezado de la columna a la izquierda de cada valor, creando un formato de "etiqueta: valor" que es fácil de leer en vertical.
+
+### 5. Generación de la Tabla de Estimación de Ahorro
+
+**Problema:** La tabla de "Estimación de Ahorro y Valor Generado" no se estaba generando y aparecía vacía en el informe.
+
+**Solución:** Se ha implementado la lógica necesaria para calcular y mostrar las oportunidades de ahorro basadas en las respuestas del usuario.
+- **Nueva Función `generateSavings(answers)`:** Se ha creado una nueva función en `js/report.js` que se encarga de analizar las respuestas de la encuesta y generar un array de objetos con las estimaciones de ahorro. La función considera varios factores, como:
+    - **Adopción de Microsoft 365 Copilot:** Estima el ahorro de tiempo mensual si la organización no está utilizando Copilot.
+    - **Automatización con Power Automate:** Calcula el ahorro potencial al automatizar procesos manuales.
+    - **Eficiencia del Personal de Campo con Power Apps:** Estima las ganancias de eficiencia al digitalizar tareas para el personal de campo.
+    - **Optimización de Licenciamiento:** Sugiere acciones para maximizar el ROI de la licencia actual o evaluar una migración a un plan superior.
+- **Integración en el Informe Principal:** La función `generateMasterReport` ha sido actualizada para llamar a `generateSavings(answers)` y pasar los datos generados a la tabla correspondiente en el informe.
+- **Valores por Defecto y Estimaciones:** La función utiliza valores conservadores y supuestos (ej. número de empleados, tarifa por hora) para generar estimaciones monetarias realistas, proporcionando un punto de partida tangible para discusiones sobre el ROI.
+
+### 6. Corrección de la Generación del Cuadro de Plan de Acción y Recomendaciones
+
+**Problema:** El cuadro de "Plan de Acción y Recomendaciones" no se estaba generando correctamente, específicamente el texto introductorio (`recommendations-prose`) aparecía vacío.
+
+**Solución:** Se ha modificado la función `generateDiagnosticsAndRecommendations` en `js/report.js` para asegurar que el texto introductorio de las recomendaciones (`prose.recommendations`) se genere adecuadamente:
+- Se añadió lógica para poblar `prose.recommendations` con un mensaje introductorio relevante si se generan recomendaciones específicas.
+- En caso de que no se identifiquen recomendaciones específicas (por ejemplo, si la puntuación de seguridad e IA es alta), se proporciona un mensaje por defecto indicando que la configuración actual parece adecuada.
+
+### 7. Mensaje Explícito para la Ausencia de Recomendaciones
+
+**Problema:** Aunque la lógica para generar recomendaciones existía, si no se identificaban acciones específicas, la sección de "Plan de Acción y Recomendaciones" podía aparecer vacía, lo que generaba confusión al usuario.
+
+**Solución:** Se ha modificado la función `populateList` en `js/report.js` para que, si el array de recomendaciones está vacío, se muestre un mensaje claro indicando la ausencia de acciones o recomendaciones específicas.
+- Ahora, si no hay recomendaciones, la lista mostrará: "<em>No se han identificado acciones o recomendaciones específicas en esta evaluación.</em>"
+
+Esto mejora la experiencia del usuario al proporcionar retroalimentación explícita, incluso en escenarios donde no se requieren acciones inmediatas.
+
 ## Conclusión
 
 Estas actualizaciones han mejorado significativamente la calidad del código de la aplicación, corrigiendo errores funcionales y haciendo que el código sea más fácil de entender y mantener en el futuro. La aplicación ahora debería funcionar de manera más fiable y predecible.

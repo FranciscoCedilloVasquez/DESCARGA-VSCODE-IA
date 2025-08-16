@@ -196,6 +196,13 @@ document.addEventListener('DOMContentLoaded', () => {
             diagnostics.push({ category: 'general', area: 'Diagnóstico General', obs: 'No se han detectado problemas significativos en las áreas evaluadas.', impact: 'Su configuración actual parece ser adecuada.', statusClass: 'status-ok' });
         }
 
+        // Populate prose.recommendations based on generated recommendations
+        if (recommendations.length > 0) {
+            prose.recommendations = 'Basado en el diagnóstico, le recomendamos las siguientes acciones para maximizar su inversión y mitigar los riesgos identificados:';
+        } else {
+            prose.recommendations = 'No se han identificado recomendaciones específicas en esta evaluación. Su configuración actual parece ser adecuada.';
+        }
+
         return { diagnostics, recommendations, categories, prose };
     }
 
@@ -223,6 +230,86 @@ document.addEventListener('DOMContentLoaded', () => {
         return summaryPoints;
     }
 
+    function generateSavings(answers) {
+        const savings = [];
+        const numEmployees = parseInt(answers.empleados, 10) || 50; // Default to 50 employees if not specified
+
+        // 1. Microsoft 365 Copilot Adoption
+        if (answers.m365_copilot !== 'Sí') {
+            const hoursSavedPerUserPerMonth = 2.5; // Conservative estimate
+            const avgHourlyRate = 25; // Estimated average hourly rate in USD
+            const monthlySavings = Math.round(numEmployees * hoursSavedPerUserPerMonth * avgHourlyRate);
+            savings.push({
+                category: 'ia',
+                concept: 'Ahorro de tiempo con M365 Copilot',
+                current: 'No se utiliza o se planea utilizar.',
+                action: 'Implementar un piloto de M365 Copilot para medir el ROI y expandir su uso.',
+                value: `$${monthlySavings.toLocaleString('es-ES')} / mes (estimado)`
+            });
+        }
+
+        // 2. Power Automate Process Automation
+        if (answers.power_automate !== 'Sí') {
+            const processesToAutomate = 5; // Estimated number of simple processes
+            const hoursSavedPerProcessPerMonth = 10;
+            const avgHourlyRate = 20;
+            const monthlySavings = Math.round(processesToAutomate * hoursSavedPerProcessPerMonth * avgHourlyRate);
+            savings.push({
+                category: 'automatizacion',
+                concept: 'Automatización de Tareas con Power Automate',
+                current: 'Procesos manuales o sin automatización.',
+                action: 'Identificar 2-3 procesos clave (ej. aprobación de gastos, solicitudes de vacaciones) y automatizarlos.',
+                value: `$${monthlySavings.toLocaleString('es-ES')} / mes (estimado)`
+            });
+        }
+
+        // 3. Field Personnel Efficiency with Power Apps
+        if (answers.personal_campo === 'Sí' && answers.power_apps !== 'Sí') {
+            const fieldUsers = Math.round(numEmployees * 0.3); // Assuming 30% are field workers
+            const hoursSavedPerUserPerWeek = 1;
+            const avgHourlyRate = 22;
+            const monthlySavings = Math.round(fieldUsers * hoursSavedPerUserPerWeek * 4 * avgHourlyRate);
+            savings.push({
+                category: 'desarrollo',
+                concept: 'Eficiencia del Personal de Campo con Power Apps',
+                current: 'Procesos en papel o ineficientes para el personal de campo.',
+                action: 'Desarrollar una Power App para digitalizar un proceso clave (ej. reportes de visita, inspecciones).',
+                value: `$${monthlySavings.toLocaleString('es-ES')} / mes (estimado)`
+            });
+        }
+        
+        // 4. License Optimization
+        if (answers.m365_edicion === 'Microsoft 365 E5') {
+             savings.push({
+                category: 'general',
+                concept: 'Optimización de Licenciamiento',
+                current: 'Licenciamiento Microsoft 365 E5.',
+                action: 'Asegurar el despliegue y adopción de todas las funciones de E5 para maximizar el ROI.',
+                value: 'ROI Maximizado'
+            });
+        } else if (answers.m365_edicion !== 'No estoy seguro') {
+            savings.push({
+                category: 'general',
+                concept: 'Optimización de Licenciamiento',
+                current: `Licenciamiento ${answers.m365_edicion}.`,
+                action: 'Evaluar la migración a Microsoft 365 E5 para consolidar costos y acceder a funciones avanzadas de seguridad e IA.',
+                value: 'Potencial de Consolidación'
+            });
+        }
+
+        if (savings.length === 0) {
+            savings.push({
+                category: 'general',
+                concept: 'Oportunidades de Ahorro',
+                current: 'No se han identificado oportunidades de ahorro directo en esta evaluación.',
+                action: 'Realizar un análisis más profundo de los procesos internos para identificar áreas de mejora.',
+                value: 'N/A'
+            });
+        }
+
+        return savings;
+    }
+
     function generateMasterReport(answers) {
         const persona = determinePersona(answers);
         const scores = calculateScores(answers);
@@ -232,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
             diagnostics: diagProse.diagnostics,
             recommendations: ''
         };
-        const savings = [];
+        const savings = generateSavings(answers);
         const licenseTable = generateLicenseTable(answers.m365_edicion);
         const filterButtons = generateFilterButtons(categories);
         const radarData = generateRadarData(scores);
@@ -254,9 +341,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const recommended = 'Microsoft 365 E5';
         const recommendedFeatures = licenses[recommended];
         const currentFeatures = licenses[currentLicense] || {};
+        const currentLicenseName = currentLicense || 'Su Plan';
+        const recommendedLicenseName = `Plan Recomendado (${recommended})`;
 
         let table = `<table class="report-table license-table">
-                        <thead><tr><th>Funcionalidad Clave</th><th>${currentLicense || 'Su Plan'}</th><th>Plan Recomendado (${recommended})</th></tr></thead>
+                        <thead><tr><th>Funcionalidad Clave</th><th>${currentLicenseName}</th><th>${recommendedLicenseName}</th></tr></thead>
                         <tbody>`;
 
         for (const feature in recommendedFeatures) {
@@ -265,9 +354,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const isRecommended = recommendedValue === 'Sí';
 
             table += `<tr>
-                        <td>${feature}</td>
-                        <td>${currentValue}</td>
-                        <td class="${isRecommended ? 'check-mark' : ''}">${isRecommended ? '✔' : recommendedValue}</td>
+                        <td data-label="Funcionalidad Clave">${feature}</td>
+                        <td data-label="${currentLicenseName}">${currentValue}</td>
+                        <td data-label="${recommendedLicenseName}" class="${isRecommended ? 'check-mark' : ''}">${isRecommended ? '✔' : recommendedValue}</td>
                       </tr>`;
         }
 
