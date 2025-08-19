@@ -5,7 +5,7 @@ const surveyData = [
             { id: 'empresa', text: 'Nombre de la empresa:', type: 'text', required: true },
             { id: 'sector', text: 'Sector de actividad:', type: 'text' },
             { id: 'empleados', text: 'Número de empleados:', type: 'text' },
-            { id: 'ti_interno', text: '¿Cuenta con un departamento de TI interno?', type: 'radio', options: ['Sí', 'No'] },
+            { id: 'ti_interno', text: '¿Cómo gestiona el soporte de TI de su empresa?', type: 'radio', options: [{text: 'Interno', score: 2}, {text: 'Externo', score: 1}, {text: 'No posee', score: 0}] },
         ]
     },
     {

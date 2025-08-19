@@ -355,7 +355,7 @@ button.hidden { display: none; }
 
 .radar-chart-container {
     width: 100%;
-    max-width: 400px;
+    max-width: 600px; /* Increased from 400px */
     margin: 0 auto;
 }
 

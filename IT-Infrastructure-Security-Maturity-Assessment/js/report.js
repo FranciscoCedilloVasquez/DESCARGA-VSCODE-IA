@@ -25,7 +25,22 @@ document.addEventListener('DOMContentLoaded', () => {
         surveyData.forEach(section => {
             section.questions.forEach(q => {
                 const row = tbody.insertRow();
-                row.innerHTML = `<td data-label="Pregunta">${q.text}</td><td data-label="Respuesta">${answers[q.id] || '<em>No respondida</em>'}</td>`;
+                const userAnswer = answers[q.id] || '<em>No respondida</em>';
+                let score = 0;
+                let maxScore = 0;
+
+                if (q.type === 'radio' && q.options) {
+                    q.options.forEach(opt => {
+                        if (typeof opt.score === 'number') {
+                            maxScore = Math.max(maxScore, opt.score);
+                            if (userAnswer === opt.text) {
+                                score = opt.score;
+                            }
+                        }
+                    });
+                }
+
+                row.innerHTML = `<td data-label="Pregunta">${q.text}</td><td data-label="Respuesta">${userAnswer}</td><td data-label="Valoración"><strong>${score} / ${maxScore}</strong></td>`;
             });
         });
     }
@@ -133,7 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function determinePersona(answers) {
         const numEmployees = parseInt(answers.empleados, 10) || 0;
         if (numEmployees > 250) return 'Corporativo';
-        if (answers.ti_interno === 'Sí' && numEmployees > 50) return 'Empresa Mediana con TI';
+        if (answers.ti_interno === 'Interno' && numEmployees > 50) return 'Empresa Mediana con TI';
+        if (answers.ti_interno === 'Externo' && numEmployees > 50) return 'Empresa Mediana con TI';
         return 'PYME';
     }
 
@@ -303,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return buttons;
     }
 
-    function generateEvaluationMethodologyHtml(maxScores) {
+    function generateEvaluationMethodologyHtml(maxScores, scores) {
         let html = `
             <h3>Cómo se Calcula su Nivel de Madurez</h3>
             <p>La evaluación se basa en un sistema de puntuación por áreas clave de su infraestructura y seguridad TI. Cada pregunta contribuye a la puntuación de un área específica, y las respuestas de mayor madurez suman más puntos.</p>
@@ -311,7 +327,13 @@ document.addEventListener('DOMContentLoaded', () => {
             <h4>Puntuación por Área:</h4>
             <ul>`;
         Object.keys(maxScores).forEach(key => {
-            html += `<li><strong>${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}:</strong> Máximo ${maxScores[key]} puntos.</li>`;
+            const sectionScore = scores[key];
+            const sectionMaxScore = maxScores[key];
+            let status = '';
+            if (sectionScore >= sectionMaxScore * 0.8) {
+                status = '<span class="status-ok">Aprobado</span>';
+            }
+            html += `<li><strong>${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}:</strong> ${sectionScore} / ${sectionMaxScore} puntos. ${status}</li>`;
         });
         html += `</ul>
 
@@ -328,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><strong>Advertencia (<span class="status-warning">Amarillo</span>):</strong> Indica áreas con configuración básica o reactiva, con riesgo potencial.</li>
                 <li><strong>Peligro (<span class="status-danger">Rojo</span>):</strong> Señala brechas críticas o falta de implementación de prácticas esenciales, con alto riesgo.</li>
             </ul>
-            <p>Si un área no muestra diagnósticos específicos, significa que su nivel de madurez en esa área es alto y cumple con las mejores prácticas.</p>
+            <p>Si un área no muestra diagnósticos específicos, significa que su nivel de madurez en esa área es alto y cumple con las mejores prácticas. <span class="status-ok">Aprobado</span></p>
         `;
         return html;
     }
@@ -386,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderRadarChart(document.getElementById('radar-chart-container'), report.radarData);
         setupFilters();
-        document.getElementById('evaluation-methodology-section').innerHTML = generateEvaluationMethodologyHtml(report.maxScores);
+        document.getElementById('evaluation-methodology-section').innerHTML = generateEvaluationMethodologyHtml(report.maxScores, report.scores);
     }
 
     function populateLicenseTable(answers) {
@@ -469,7 +491,8 @@ document.addEventListener('DOMContentLoaded', () => {
     handleThemeToggle();
     const { scores, maxScores } = calculateScores(answers, surveyData);
     const report = generateMasterReport(answers, surveyData);
-    report.maxScores = maxScores; // Add maxScores to the report object
+    report.maxScores = maxScores;
+    report.scores = scores;
     populateReport(report);
 
 });
