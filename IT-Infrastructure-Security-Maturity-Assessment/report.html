@@ -68,6 +68,7 @@
             <div class="report-section">
                 <h2>📋 Resumen de sus Respuestas</h2>
                 <table class="report-table answers-summary-table">
+                    <thead><tr><th>Pregunta</th><th>Respuesta</th><th>Valoración</th></tr></thead>
                     <tbody id="respuestas-body"></tbody>
                 </table>
             </div>
@@ -88,6 +89,13 @@
         </footer>
 
     </div>
+
+    <div id="glossary-widget" class="hidden">
+        <h3 id="glossary-term"></h3>
+        <p id="glossary-definition"></p>
+    </div>
+
+    <script src="js/glossary.js"></script>
     <script src="js/report.js"></script>
 </body>
 </html>
