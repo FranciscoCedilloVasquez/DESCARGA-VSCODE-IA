@@ -289,8 +289,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const filterButtons = generateFilterButtons(categories);
         const radarData = generateRadarData(scores, maxScores);
         const summaryPoints = calculateMaturityLevel(scores, maxScores);
+        const actionPlan = generateActionPlan(recommendations);
 
-        return { persona, prose, diagnostics, recommendations, radarData, summaryPoints, filterButtons, maxScores };
+        return { persona, prose, diagnostics, recommendations, radarData, summaryPoints, filterButtons, maxScores, actionPlan };
     }
 
     function generateFilterButtons(categories) {
@@ -331,6 +332,19 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         return html;
     }
+
+    function generateActionPlan(recommendations) {
+        let html = '<ul class="recommendations filterable-content">';
+        if (recommendations.length === 0) {
+            html += '<li><em>No se han identificado acciones o recomendaciones específicas en esta evaluación.</em></li>';
+        } else {
+            recommendations.forEach(rec => {
+                html += `<li data-category="${rec.category}"><strong>${rec.title}:</strong> ${rec.desc}</li>`;
+            });
+        }
+        html += '</ul>';
+        return html;
+    }
     
     function populateReport(report) {
 
@@ -339,24 +353,21 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('report-persona').textContent = report.persona;
         document.getElementById('summary-prose').innerHTML = report.prose.summary;
         document.getElementById('diagnostics-prose').textContent = report.prose.diagnostics;
-        document.getElementById('recommendations-prose').textContent = report.prose.recommendations;
+        document.getElementById('recommendations-prose').innerHTML = report.actionPlan;
         document.getElementById('executive-summary-points').innerHTML = report.summaryPoints;
         document.getElementById('filter-bar').innerHTML = report.filterButtons;
 
-        // For now, we hide the license and savings sections
         const licenseContainer = document.getElementById('license-comparison-container');
-        if(licenseContainer) licenseContainer.parentElement.style.display = 'block'; // Show this section
+        if(licenseContainer) licenseContainer.parentElement.style.display = 'block';
         const savingsContainer = document.getElementById('ahorro-body');
-        if(savingsContainer) savingsContainer.parentElement.parentElement.parentElement.style.display = 'block'; // Show this section
+        if(savingsContainer) savingsContainer.parentElement.parentElement.parentElement.style.display = 'block';
 
-        // Populate license and savings tables
         populateLicenseTable(answers);
         populateSavingsTable(report.recommendations);
 
 
         populateAnswers(document.getElementById('respuestas-body'), surveyData, answers);
         populateTable(document.getElementById('diagnostico-body'), report.diagnostics, ['area', 'obs', 'impact']);
-        populateList(document.getElementById('recomendaciones-list'), report.recommendations);
         
         const nextStepsHtml = generateNextSteps(report);
         document.querySelector('.final-cta').innerHTML = nextStepsHtml;
@@ -380,7 +391,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function populateLicenseTable(answers) {
         const tbody = document.getElementById('license-comparison-container');
-        // This is a placeholder. In a real scenario, this data would be more dynamic.
         const licenseData = [
             { feature: 'Microsoft 365 E3', current: '✓', recommended: '✓' },
             { feature: 'Microsoft 365 E5', current: '✗', recommended: '✓' },
@@ -398,25 +408,29 @@ document.addEventListener('DOMContentLoaded', () => {
     function populateSavingsTable(recommendations) {
         const tbody = document.getElementById('ahorro-body');
         let html = '';
+        if (recommendations.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4"><em>No se han identificado oportunidades de ahorro específicas en esta evaluación.</em></td></tr>';
+            return;
+        }
+
         recommendations.forEach(rec => {
-            // This is a placeholder. In a real scenario, this data would be more dynamic.
             const savings = {
-                'Modernizar la Gestión de Red': 'Reducción de interrupciones y mejora de la productividad.',
-                'Implementar Segmentación de Red': 'Reducción del riesgo de brechas de seguridad y multas.',
-                'Implementar Plan de Backup y DR': 'Reducción del tiempo de inactividad y pérdida de datos.',
-                'Renovar Hardware de Servidores': 'Mejora del rendimiento y reducción de costes de mantenimiento.',
-                'Optimizar Estrategia de Backups': 'Reducción del riesgo de pérdida de datos irrecuperable.',
-                'Desarrollar y Probar DRP': 'Reducción del impacto financiero de un desastre.',
-                'Actualizar a un Firewall de Nueva Generación (NGFW)': 'Reducción del riesgo de intrusiones y malware.',
-                'Desplegar EDR y Gestión Centralizada': 'Reducción del riesgo de ataques de endpoints.',
-                'Implementar MFA y PAM': 'Reducción del riesgo de compromiso de credenciales.',
-                'Implementar 2FA en Sistemas Críticos': 'Reducción del riesgo de acceso no autorizado.',
-                'Definir y Comunicar Políticas de Seguridad': 'Mejora del cumplimiento normativo y la postura de seguridad.',
-                'Establecer Programa de Concienciación en Ciberseguridad': 'Reducción del riesgo de errores humanos.',
-                'Implementar Proceso de Gestión de Parches': 'Reducción del riesgo de brechas de seguridad.',
-                'Implementar un ERP Integrado': 'Mejora de la eficiencia operativa y la toma de decisiones.',
-                'Implementar Sistema de Trazabilidad Avanzado': 'Mejora del cumplimiento normativo y la cadena de suministro.',
-                'Aislar y Proteger Redes OT': 'Reducción del riesgo de interrupción de la producción.'
+                'Evaluar la Adopción de un Modelo Híbrido o Cloud-Native': '<strong>Reducción de costes de capital (CapEx)</strong> al disminuir la inversión en hardware. <strong>Optimización de costes operativos (OpEx)</strong> mediante el pago por uso. <strong>Mejora de la agilidad</strong> para responder a las demandas del mercado.',
+                'Implementar una Segmentación de Red Robusta (VLANs)': '<strong>Reducción del riesgo de brechas de seguridad</strong>, evitando multas y costes de remediación. <strong>Protección de la propiedad intelectual</strong> y los datos críticos del negocio.',
+                'Acelerar la Adopción de la Virtualización': '<strong>Reducción de costes de hardware</strong> (consolidación de servidores). <strong>Ahorro en energía y refrigeración</strong>. <strong>Disminución del tiempo de inactividad</strong> no planificado.',
+                'Establecer un Ciclo de Vida y Plan de Renovación de Hardware': '<strong>Reducción de costes de mantenimiento</strong> de hardware obsoleto. <strong>Mejora del rendimiento y la productividad</strong> de los empleados. <strong>Mitigación de riesgos</strong> de seguridad.',
+                'Implementar una Estrategia de Backup Robusta (Regla 3-2-1)': '<strong>Garantiza la continuidad del negocio</strong> ante un desastre. <strong>Evita la pérdida de datos críticos</strong> y los costes asociados a su recuperación (si es posible).',
+                'Desarrollar y Probar un Plan de Recuperación de Desastres (DRP)': '<strong>Minimiza el impacto financiero</strong> de un desastre. <strong>Reduce el tiempo de inactividad</strong> y acelera la recuperación. <strong>Cumplimiento de requisitos</strong> normativos y de clientes.',
+                'Actualizar a un Firewall de Nueva Generación (NGFW)': '<strong>Prevención de ciberataques</strong> que pueden resultar en pérdidas financieras directas, robo de datos y daño a la reputación. <strong>Mejora de la visibilidad</strong> del tráfico de red para una mejor toma de decisiones.',
+                'Desplegar una Solución de EDR (Endpoint Detection and Response)': '<strong>Detección y respuesta proactiva</strong> a amenazas avanzadas. <strong>Reducción del tiempo de permanencia de los atacantes</strong> en la red. <strong>Protección contra ransomware</strong> y otros ataques destructivos.',
+                'Implementar Autenticación Multifactor (MFA) de Forma Universal': '<strong>Reducción drástica del riesgo</strong> de compromiso de credenciales, el vector de ataque más común. <strong>Protección del acceso</strong> a datos sensibles y sistemas críticos.',
+                'Proteger el Acceso a Sistemas Críticos con MFA': '<strong>Salvaguarda de los activos más importantes</strong> de la empresa (datos financieros, propiedad intelectual). <strong>Cumplimiento de normativas</strong> que exigen controles de acceso estrictos.',
+                'Definir y Comunicar un Conjunto de Políticas de Seguridad': '<strong>Creación de una cultura de seguridad</strong> en la organización. <strong>Reducción del riesgo de errores humanos</strong>. <strong>Demostración de la debida diligencia</strong> en seguridad a clientes y reguladores.',
+                'Establecer un Programa de Concienciación y Capacitación en Ciberseguridad': '<strong>Fortalecimiento del eslabón más débil</strong> de la cadena de seguridad. <strong>Reducción de la probabilidad de éxito</strong> de los ataques de phishing y ingeniería social.',
+                'Implementar un Proceso Formal de Gestión de Parches': '<strong>Cierre de las puertas de entrada</strong> más comunes para los atacantes. <strong>Reducción de la superficie de ataque</strong> de la organización. <strong>Evita multas</strong> por incumplimiento de normativas.',
+                'Centralizar la Gestión con un Sistema ERP Integrado': '<strong>Optimización de procesos de negocio</strong> y reducción de costes operativos. <strong>Mejora de la toma de decisiones</strong> basada en datos precisos y en tiempo real. <strong>Aumento de la competitividad</strong>.',
+                'Implementar un Sistema de Trazabilidad Integrado (WMS)': '<strong>Cumplimiento de normativas</strong> y estándares de la industria. <strong>Optimización de la gestión de inventario</strong> y reducción de pérdidas. <strong>Mejora de la satisfacción del cliente</strong>.',
+                'Aislar y Proteger las Redes de Tecnología Operacional (OT)': '<strong>Protección de la infraestructura crítica</strong> de producción. <strong>Evita paradas de producción</strong> y pérdidas económicas masivas. <strong>Garantiza la seguridad</strong> de los empleados.'
             };
             html += `<tr><td data-label="Concepto">${rec.title}</td><td data-label="Situación Actual">${rec.obs || 'N/A'}</td><td data-label="Acción Propuesta">${rec.desc}</td><td data-label="Valor / Ahorro">${savings[rec.title] || 'N/A'}</td></tr>`;
         });

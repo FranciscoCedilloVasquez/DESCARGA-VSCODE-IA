@@ -14,3 +14,4 @@ Este documento rastreará las mejoras realizadas en el código de la aplicación
 - **Diseño visual mejorado:** Se ha mejorado el diseño visual del informe para que sea más profesional y fácil de leer.
 - **Sección de metodología mejorada:** La sección de metodología ahora proporciona una explicación más detallada de los niveles de madurez y los umbrales de puntuación.
 - **Descripciones de perfiles:** Se han añadido descripciones de perfiles para proporcionar un contexto adicional al usuario.
+- **Contenido enriquecido:** Se ha enriquecido el contenido de las secciones de Diagnóstico Detallado, Estimación de Ahorro y Valor Generado y Plan de Acción y Recomendaciones con información más detallada y específica.
