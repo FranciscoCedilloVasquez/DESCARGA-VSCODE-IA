@@ -1,0 +1,20 @@
+Term,Definition
+CPU,El cerebro de la computadora, como el director de una orquesta.
+RAM,La memoria a corto plazo de la computadora, como tu mesa de trabajo.
+Disco Duro,Donde la computadora guarda todo, como tu mochila para guardar tus cosas.
+Internet,Una red gigante que conecta computadoras, como una telaraña mundial.
+Nube,Guardar cosas en internet, como guardar tus juguetes en un armario mágico en el cielo.
+PYME,Pequeñas y Medianas Empresas que buscan optimizar sus recursos y mejorar su seguridad con soluciones escalables y rentables.
+Virtualización de servidores,Uso de tecnologías como VMware vSphere o Microsoft Hyper-V para consolidar servidores, mejorar la utilización de recursos, agilizar la recuperación ante desastres y reducir costes operativos.
+Plan de Recuperación de Desastres (DRP),Un plan que detalla los roles, responsabilidades y procedimientos para restaurar los servicios de TI en caso de un desastre.
+Firewall de Nueva Generación (NGFW),Un firewall con capacidades de inspección profunda de paquetes (DPI), prevención de intrusiones (IPS), control de aplicaciones y filtrado de contenido para fortalecer la seguridad perimetral.
+Endpoint,Dispositivos finales como ordenadores y portátiles que son vulnerables a ataques si no tienen la protección adecuada.
+Antivirus Tradicional,Una protección de endpoints que es insuficiente para detectar y responder a las amenazas actuales como el ransomware.
+EDR (Endpoint Detection and Response),Una solución que reemplaza al antivirus tradicional y monitoriza el comportamiento de los sistemas para detectar y responder a ataques desconocidos o en curso.
+Autenticación Multifactor (MFA),Una capa de seguridad adicional que protege contra el robo de credenciales al requerir más de un método de verificación para el acceso a sistemas críticos.
+Gestión de Parches,Un proceso proactivo para la gestión de parches que incluye la identificación de activos, el monitoreo de vulnerabilidades, la prueba de parches y su despliegue controlado.
+Seguridad Operacional (OT),Protección de los sistemas de control industrial (OT) que pueden ser un objetivo crítico para los atacantes, lo que podría causar la interrupción de la producción, daños y riesgos para los empleados.
+Regla 3-2-1,Una estrategia de backup que recomienda tener 3 copias de los datos, en 2 tipos de medios diferentes, con al menos 1 copia off-site.
+Phishing,Un método de ataque en el que los ciberdelincuentes se hacen pasar por entidades legítimas para engañar a los empleados y robar credenciales.
+TI,(Tecnología de la Información) El uso de computadoras, redes y software para gestionar y procesar la información en una empresa, permitiéndole manejar recursos, mejorar la seguridad y optimizar operaciones.
+Infraestructura,El conjunto de componentes y servicios que dan soporte a las operaciones de la empresa, incluyendo la infraestructura de red, servidores de almacenamiento y sistemas empresariales.

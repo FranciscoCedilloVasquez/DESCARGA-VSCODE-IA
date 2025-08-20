@@ -1,20 +1,79 @@
+
 Term,Definition
 CPU,El cerebro de la computadora, como el director de una orquesta.
 RAM,La memoria a corto plazo de la computadora, como tu mesa de trabajo.
 Disco Duro,Donde la computadora guarda todo, como tu mochila para guardar tus cosas.
 Internet,Una red gigante que conecta computadoras, como una telara帽a mundial.
-Nube,Guardar cosas en internet, como guardar tus juguetes en un armario m谩gico en el cielo.
-PYME,Peque馻s y Medianas Empresas que buscan optimizar sus recursos y mejorar su seguridad con soluciones escalables y rentables.
-Virtualizaci髇 de servidores,Uso de tecnolog韆s como VMware vSphere o Microsoft Hyper-V para consolidar servidores, mejorar la utilizaci髇 de recursos, agilizar la recuperaci髇 ante desastres y reducir costes operativos.
-Plan de Recuperaci髇 de Desastres (DRP),Un plan que detalla los roles, responsabilidades y procedimientos para restaurar los servicios de TI en caso de un desastre.
-Firewall de Nueva Generaci髇 (NGFW),Un firewall con capacidades de inspecci髇 profunda de paquetes (DPI), prevenci髇 de intrusiones (IPS), control de aplicaciones y filtrado de contenido para fortalecer la seguridad perimetral.
-Endpoint,Dispositivos finales como ordenadores y port醫iles que son vulnerables a ataques si no tienen la protecci髇 adecuada.
-Antivirus Tradicional,Una protecci髇 de endpoints que es insuficiente para detectar y responder a las amenazas actuales como el ransomware.
-EDR (Endpoint Detection and Response),Una soluci髇 que reemplaza al antivirus tradicional y monitoriza el comportamiento de los sistemas para detectar y responder a ataques desconocidos o en curso.
-Autenticaci髇 Multifactor (MFA),Una capa de seguridad adicional que protege contra el robo de credenciales al requerir m醩 de un m閠odo de verificaci髇 para el acceso a sistemas cr韙icos.
-Gesti髇 de Parches,Un proceso proactivo para la gesti髇 de parches que incluye la identificaci髇 de activos, el monitoreo de vulnerabilidades, la prueba de parches y su despliegue controlado.
-Seguridad Operacional (OT),Protecci髇 de los sistemas de control industrial (OT) que pueden ser un objetivo cr韙ico para los atacantes, lo que podr韆 causar la interrupci髇 de la producci髇, da駉s y riesgos para los empleados.
-Regla 3-2-1,Una estrategia de backup que recomienda tener 3 copias de los datos, en 2 tipos de medios diferentes, con al menos 1 copia off-site.
-Phishing,Un m閠odo de ataque en el que los ciberdelincuentes se hacen pasar por entidades leg韙imas para enga馻r a los empleados y robar credenciales.
-TI,(Tecnolog韆 de la Informaci髇) El uso de computadoras, redes y software para gestionar y procesar la informaci髇 en una empresa, permiti閚dole manejar recursos, mejorar la seguridad y optimizar operaciones.
- Infraestructura,El conjunto de componentes y servicios que dan soporte a las operaciones de la empresa, incluyendo la infraestructura de red, servidores de almacenamiento y sistemas empresariales.
+Nube,Guardar cosas en internet, como guardar tus juguetes en un armario magico en el cielo.
+Virtualizacion,Uso de tecnologias para ejecutar varios sistemas operativos en un solo servidor fisico.
+Backup,Copia de seguridad de datos para prevenir perdidas.
+Firewall,Dispositivo o software que controla el trafico de red para proteger sistemas.
+VPN,Red privada virtual que cifra la conexion a internet.
+Antivirus,Software que detecta y elimina virus informaticos.
+Endpoint,Dispositivo final como computadora, portatil o movil.
+Cifrado,Proceso de convertir datos en un formato seguro e ilegible para proteger la informacion.
+MFA,Autenticacion multifactor: requiere mas de un metodo de verificacion para acceder a un sistema.
+Phishing,Tecnica de engano para obtener informacion confidencial haciendose pasar por una entidad confiable.
+Red,Conjunto de dispositivos conectados para compartir informacion y recursos.
+Servidor,Computadora dedicada a gestionar recursos y servicios en una red.
+Almacenamiento,Espacio donde se guardan datos y archivos.
+Cloud,Servicios y almacenamiento ofrecidos a traves de internet.
+Usuario,Persona que utiliza sistemas o servicios informaticos.
+Contrasena,Clave secreta para acceder a sistemas o servicios.
+Seguridad,Conjunto de medidas para proteger sistemas y datos.
+Vulnerabilidad,Debilidad en un sistema que puede ser explotada por atacantes.
+Actualizacion,Proceso de instalar nuevas versiones de software para corregir errores o mejorar la seguridad.
+Licencia,Permiso legal para usar un software.
+Sistema Operativo,Software principal que gestiona el hardware y otros programas de una computadora.
+Correo,Servicio para enviar y recibir mensajes electronicos.
+Malware,Software malicioso disenado para danar o explotar sistemas.
+Spyware,Programa que recopila informacion del usuario sin su consentimiento.
+Ransomware,Malware que bloquea el acceso a datos y pide un rescate para liberarlos.
+Rootkit,Conjunto de herramientas que ocultan la presencia de malware en un sistema.
+Troyano,Malware que se oculta dentro de software legitimo para ejecutar acciones maliciosas.
+Gusano,Malware que se replica y propaga automaticamente por la red.
+Criptografia,Tecnica para proteger informacion mediante el uso de codigos.
+Autenticacion,Proceso de verificar la identidad de un usuario o sistema.
+Autorizacion,Permiso para acceder a recursos o realizar acciones en un sistema.
+Token,Elemento de seguridad que representa credenciales de acceso.
+API,Interfaz de programacion que permite la comunicacion entre aplicaciones.
+Base de datos,Sistema para almacenar y gestionar grandes cantidades de informacion estructurada.
+SQL,Lenguaje para gestionar bases de datos relacionales.
+NoSQL,Tipo de base de datos que no utiliza el modelo relacional tradicional.
+Respaldo,Copia de seguridad de datos.
+Disaster Recovery,Plan y acciones para recuperar sistemas y datos tras un desastre.
+DR,Recuperaci贸n de Desastres; conjunto de pol铆ticas y procedimientos para restaurar sistemas tras un incidente grave.
+DRP,Plan de Recuperaci贸n de Desastres; documento que detalla los pasos para restaurar operaciones tras un desastre.
+TI,Tecnolog铆as de la Informaci贸n; conjunto de recursos y sistemas para gestionar informaci贸n digital.
+OT,Tecnolog铆a Operacional; sistemas y hardware usados para controlar procesos industriales y de producci贸n.
+IT,Tecnolog铆a de la Informaci贸n; sistemas y redes dedicados al procesamiento y gesti贸n de datos.
+AWS S3,Servicio de almacenamiento en la nube de Amazon Web Services.
+Azure Files,Servicio de almacenamiento de archivos en la nube de Microsoft Azure.
+On-Premise,Infraestructura o software instalado y gestionado localmente en la empresa.
+Cloud-Native,Aplicaciones o servicios dise帽ados para ejecutarse en la nube desde su concepci贸n.
+Off-site,Ubicaci贸n fuera de las instalaciones principales, usada para copias de seguridad o recuperaci贸n.
+VLAN,Red de 谩rea local virtual que segmenta redes f铆sicas para mejorar seguridad y gesti贸n.
+MSP,Proveedor de Servicios Gestionados; empresa externa que administra sistemas TI de clientes.
+NGFW,Firewall de Nueva Generaci贸n; dispositivo avanzado de seguridad de red con inspecci贸n profunda de paquetes.
+DPI,Inspecci贸n Profunda de Paquetes; t茅cnica para analizar el contenido de los datos que circulan por la red.
+IPS,Sistema de Prevenci贸n de Intrusiones; detecta y bloquea actividades maliciosas en la red.
+ZTNA,Acceso a Red de Confianza Cero; modelo de seguridad que verifica cada acceso independientemente de la ubicaci贸n.
+Zero Trust,Modelo de seguridad que asume que ninguna red es segura y requiere verificaci贸n continua.
+VPN,Red privada virtual que cifra la conexi贸n a internet.
+EDR,Detecci贸n y Respuesta en el Endpoint; soluci贸n avanzada para identificar y responder a amenazas en dispositivos finales.
+MDM,Gestion de Dispositivos M贸viles; administraci贸n centralizada de smartphones y tablets en la empresa.
+UEM,Gestion Unificada de Endpoints; administraci贸n centralizada de todos los dispositivos de usuario.
+Active Directory,Servicio de directorio de Microsoft para gestionar usuarios y recursos en red.
+Azure Active Directory,Servicio de directorio en la nube de Microsoft para autenticaci贸n y gesti贸n de identidades.
+Entra ID,Nuevo nombre para Azure Active Directory; servicio de identidad en la nube de Microsoft.
+2FA,Autenticaci贸n de Dos Factores; requiere dos m茅todos de verificaci贸n para acceder a un sistema.
+MFA,Autenticaci贸n multifactor: requiere m谩s de un m茅todo de verificaci贸n para acceder a un sistema.
+SCADA,Sistema de Control y Adquisici贸n de Datos; controla y monitoriza procesos industriales.
+PLC,Controlador L贸gico Programable; dispositivo usado para automatizar procesos industriales.
+ERP,Sistema de Planificaci贸n de Recursos Empresariales; integra y gestiona procesos de negocio.
+WMS,Sistema de Gesti贸n de Almacenes; software para controlar y optimizar operaciones log铆sticas.
+QR,C贸digo de Respuesta R谩pida; tipo de c贸digo de barras bidimensional para almacenar informaci贸n.
+RFID,Identificaci贸n por Radiofrecuencia; tecnolog铆a para identificar y rastrear objetos mediante ondas de radio.
+PAM,Gestion de Accesos con Privilegios; controla y monitoriza cuentas con altos permisos.
+DMZ,Zona Desmilitarizada; segmento de red que separa sistemas internos de externos para mayor seguridad.
+RGPD,Reglamento General de Protecci贸n de Datos; normativa europea sobre privacidad y protecci贸n de datos.

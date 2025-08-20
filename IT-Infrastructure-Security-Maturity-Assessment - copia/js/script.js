@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sectionData.questions.forEach(q => {
             html += `<div class="question" id="question-${q.id}">
-                        <label for="${q.id}">${q.text} ${q.required ? '<span class="required" title="Campo obligatorio">*</span>' : ''}</label>`;
+                        <${q.type === 'radio' ? 'span' : 'label'}${q.type === 'radio' ? '' : ` for="${q.id}"`}>${q.text} ${q.required ? '<span class="required" title="Campo obligatorio">*</span>' : ''}</${q.type === 'radio' ? 'span' : 'label'}>`;
 
             if (q.type === 'text') {
                 html += `<input type="text" id="${q.id}" name="${q.id}" value="${userAnswers[q.id] || ''}" ${q.required ? 'required' : ''}>`;
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 html += `<div class="radio-group">`;
                 q.options.forEach(opt => {
                     const checked = userAnswers[q.id] === opt.text ? 'checked' : '';
-                    html += `<label><input type="radio" name="${q.id}" value="${opt.text}" ${q.required ? 'required' : ''} ${checked}> ${opt.text}</label>`;
+                    html += `<label for="${q.id}-${opt.text.replace(/\s+/g, '_').toLowerCase()}"><input type="radio" id="${q.id}-${opt.text.replace(/\s+/g, '_').toLowerCase()}" name="${q.id}" value="${opt.text}" ${q.required ? 'required' : ''} ${checked}> ${opt.text}</label>`;
                 });
                 html += `</div>`;
             }

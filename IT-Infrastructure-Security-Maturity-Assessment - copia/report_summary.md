@@ -1,8 +1,6 @@
 
 ## Informe Final
-
 A continuación se muestra un ejemplo del informe final que se puede generar con la aplicación mejorada. Para generar este informe, se han utilizado las siguientes respuestas de ejemplo:
-
 ```json
 {
     "empresa": "Empresa de Ejemplo",
@@ -17,8 +15,8 @@ A continuación se muestra un ejemplo del informe final que se puede generar con
     "backup_recovery": "Sí, pero no se prueba",
     "almacenamiento_nube": "Sí",
     "hardware_servidores": "Se utiliza una combinación de servidores físicos nuevos y antiguos, sin un plan de actualización claro.",
-    "copias_seguridad": "Las copias de seguridad se realizan automáticamente todos los días en la nube, pero nunca se ha intentado restaurar los datos desde ellas.",
-    "plan_drp": "Hay un documento escrito, pero está guardado en el servidor principal y nunca se ha probado.",
+    "copias_seguridad": "Las copias de seguridad se realizan automáticamente todos los días en la nube, pero nunca se ha intentado restaurar los datos desde ellas. Se realiza una copia de seguridad semanal en un disco duro externo que se guarda en la misma oficina. ¿Existe un plan de recuperación de desastres (DRP) documentado y probado? Existe un plan documentado, accesible desde múltiples ubicaciones (incluida la nube), que se revisa y prueba anualmente mediante simulacros.",
+    "plan_drp": "Existe un plan documentado, accesible desde múltiples ubicaciones (incluida la nube), que se revisa y prueba anualmente mediante simulacros.",
     "firewall": "No",
     "vpn": "VPN tradicional",
     "proteccion_ddos": "No",
